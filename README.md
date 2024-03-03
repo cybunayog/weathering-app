@@ -13,7 +13,7 @@ weather information.
 Clone the repository
 
 ```bash
-git clone https://github.com/cybunayog/cnci-app.git
+git clone https://github.com/cybunayog/weathering-app.git
 ```
 
 Install the dependencies with Yarn
