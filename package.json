@@ -35,5 +35,10 @@
 		"prettier": "^3.2.5",
 		"typescript": "^5.1.3"
 	},
+  "lint-staged": {
+    "**/*.{js,jsx,ts,tsx}": [
+      "yarn lint:fix"
+    ]
+  },
 	"private": true
 }
