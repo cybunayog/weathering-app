@@ -7,7 +7,6 @@ import useLocation from "./lib/useLocation";
 
 export default function App() {
   const { location } = useLocation();
-
   const { currentWeatherData, loadingCurrentWeatherData, currentWeatherError } =
     getCurrentWeather(
       location?.coords.latitude || 0,

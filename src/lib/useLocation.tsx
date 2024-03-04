@@ -3,7 +3,7 @@ import { LocationObject } from "expo-location";
 import { useState, useEffect } from "react";
 
 export default function useLocation() {
-  const [location, setLocation] = useState<LocationObject | null>(null);
+  const [location, setLocation] = useState<LocationObject | null>();
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
@@ -19,7 +19,7 @@ export default function useLocation() {
       const location = await Location.getCurrentPositionAsync();
       setLocation(location);
     })();
-  });
+  }, [location, error]);
 
   return { location, error };
 }
