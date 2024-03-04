@@ -3,8 +3,8 @@ import { useState, useEffect } from "react";
 
 import { OpenWeatherMapResponse } from "./types";
 
-export default function useApi(url: string, method: Method) {
-  // TODO: Add types for all data responses
+// TODO: Add types for all data responses
+export function useApi(url: string, method: Method) {
   const [data, setData] = useState<OpenWeatherMapResponse | null>(null);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<{ message: string } | null>(null);
@@ -26,4 +26,17 @@ export default function useApi(url: string, method: Method) {
   }, []);
 
   return { data, isLoading, error };
+}
+
+export function useOpenWeatherApi(
+  path: string,
+  lat: number,
+  long: number,
+  isImperial: boolean = true,
+  method: Method,
+) {
+  return useApi(
+    `${process.env.EXPO_PUBLIC_OPEN_WEATHER_URL}/${path}lat=${lat}&lon=${long}&units=${isImperial ? "imperial" : "metric"}&appid=${process.env.EXPO_PUBLIC_OPEN_WEATHER_KEY}`,
+    method,
+  );
 }
