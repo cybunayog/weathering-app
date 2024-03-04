@@ -1,6 +1,6 @@
 ## weathering-app
 
-An Expo App that uses an open-source weather api to display
+An Expo App that uses a Weather API to display
 weather information.
 
 ## Requirements
@@ -29,7 +29,7 @@ yarn install
 - [React Native Paper](https://callstack.github.io/react-native-paper/)
 - [Husky](https://typicode.github.io/husky/)
 - [lint-staged](https://github.com/okonet/lint-staged)
-- [Open-Meteo](https://open-meteo.com/)
+- [OpenWeather](https://openweathermap.org/)
 
 ## License
 
