@@ -1,6 +1,6 @@
 import { Method } from "axios";
 
-import useApi from "./useApi";
+import { useOpenWeatherApi } from "./useApi";
 
 export default function getCurrentWeather(
   lat: number,
@@ -12,10 +12,7 @@ export default function getCurrentWeather(
     data: currentWeatherData,
     isLoading: loadingCurrentWeatherData,
     error: currentWeatherError,
-  } = useApi(
-    `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${long}&units=${isImperial ? "imperial" : "metric"}&appid=${process.env.EXPO_PUBLIC_OPEN_WEATHER_KEY}`,
-    method,
-  );
+  } = useOpenWeatherApi("weather", lat, long, isImperial, method);
 
   return { currentWeatherData, loadingCurrentWeatherData, currentWeatherError };
 }
