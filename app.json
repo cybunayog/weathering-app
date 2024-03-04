@@ -18,7 +18,7 @@
       [
         "expo-location",
         {
-          "locationAlwaysAndWhenInUsePermission": "Allow Weathering to use your location."
+          "locationAlwaysAndWhenInUsePermission": "Allow weathering-app to use your location."
         }
       ]
     ],
