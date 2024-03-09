@@ -8,10 +8,10 @@ import useLocation from "./lib/useLocation";
 export default function App() {
   const { location } = useLocation();
   const { currentWeatherData, loadingCurrentWeatherData, currentWeatherError } =
-    getCurrentWeather(
-      location?.coords.latitude || 0,
-      location?.coords.longitude || 0,
-    );
+    getCurrentWeather({
+      lat: location?.coords.latitude || 0,
+      long: location?.coords.longitude || 0,
+    });
 
   return (
     <View style={styles.container}>
