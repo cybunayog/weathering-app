@@ -40,6 +40,11 @@ type SystemResponse = {
   sunset: number;
 };
 
+export type CoordsObject = {
+  lat: number;
+  long: number;
+};
+
 export type OpenWeatherMapResponse = {
   coord: CoordinatesTypeResponse;
   weather: [WeatherResponse];

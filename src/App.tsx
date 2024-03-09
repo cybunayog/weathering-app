@@ -8,10 +8,10 @@ import useForecast from "./lib/useForecast";
 export default function App() {
   const { location } = useLocation();
   const { currentWeatherData, loadingCurrentWeatherData, currentWeatherError } =
-    getCurrentWeather(
-      location?.coords.latitude || 0,
-      location?.coords.longitude || 0,
-    );
+  getCurrentWeather({
+      lat: location?.coords.latitude || 0,
+      long: location?.coords.longitude || 0,
+    });
   const { forecast } = useForecast();
   
   
@@ -28,8 +28,7 @@ export default function App() {
     const country = location.country;
     const forecast_1 = forecast[0].main;
     const forecast_2 = forecast[1].main;
-    const forecast_3 =forecast[2].main;
-    
+    const forecast_3 = forecast[2].main;
     }));
 
   return (

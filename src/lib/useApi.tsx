@@ -1,7 +1,7 @@
 import axios, { AxiosResponse, Method } from "axios";
 import { useState, useEffect } from "react";
 
-import { OpenWeatherMapResponse } from "./types";
+import { CoordsObject, OpenWeatherMapResponse } from "./types";
 
 // TODO: Add types for all data responses
 export function useApi(url: string, method: Method) {
@@ -17,6 +17,7 @@ export function useApi(url: string, method: Method) {
         const response: AxiosResponse = await axios({ url, method });
         setData(response.data);
       } catch (error) {
+        // TODO: figure out error object
         const errorMessage = error.message;
         setError(errorMessage);
       }
@@ -30,13 +31,19 @@ export function useApi(url: string, method: Method) {
 
 export function useOpenWeatherApi(
   path: string,
-  lat: number,
-  long: number,
+  coords: CoordsObject,
   isImperial: boolean = true,
   method: Method,
+  zipcode?: string,
 ) {
+  let suffix = "";
+  if (zipcode) {
+    suffix = `zip=${zipcode}`;
+  } else {
+    suffix = `lat=${coords.lat}&lon=${coords.long}`;
+  }
   return useApi(
-    `${process.env.EXPO_PUBLIC_OPEN_WEATHER_URL}/${path}lat=${lat}&lon=${long}&units=${isImperial ? "imperial" : "metric"}&appid=${process.env.EXPO_PUBLIC_OPEN_WEATHER_KEY}`,
+    `${process.env.EXPO_PUBLIC_OPEN_WEATHER_URL}/${path}&units=${isImperial ? "imperial" : "metric"}&appid=${process.env.EXPO_PUBLIC_OPEN_WEATHER_KEY}&${suffix}`,
     method,
   );
 }
