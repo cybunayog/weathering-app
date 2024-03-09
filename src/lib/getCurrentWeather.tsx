@@ -1,18 +1,19 @@
 import { Method } from "axios";
 
+import { CoordsObject } from "./types";
 import { useOpenWeatherApi } from "./useApi";
 
 export default function getCurrentWeather(
-  lat: number,
-  long: number,
+  coords: CoordsObject,
   isImperial: boolean = true,
   method: Method = "GET",
+  zipcode?: string,
 ) {
   const {
     data: currentWeatherData,
     isLoading: loadingCurrentWeatherData,
     error: currentWeatherError,
-  } = useOpenWeatherApi("weather", lat, long, isImperial, method);
+  } = useOpenWeatherApi("weather", coords, isImperial, method, zipcode);
 
   return { currentWeatherData, loadingCurrentWeatherData, currentWeatherError };
 }
