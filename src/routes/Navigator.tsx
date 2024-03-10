@@ -30,6 +30,7 @@ export default function Navigator(): ReactElement {
           shadowOpacity: 1,
           shadowRadius: 2,
         }}
+        activeColor="#B4D5FE"
         labeled={false}
         screenOptions={({ route }) => ({
           tabBarIcon: ({ color }) => {
@@ -43,7 +44,6 @@ export default function Navigator(): ReactElement {
 
             return <Ionicons name={iconName!} size={25} color={color} />;
           },
-          headerShown: false,
         })}
       >
         <Screen name="Home" component={HomeScreen} />
