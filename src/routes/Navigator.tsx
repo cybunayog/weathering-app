@@ -19,6 +19,7 @@ export default function Navigator(): ReactElement {
   return (
     <NavigationContainer>
       <RootNavigator
+        initialRouteName="Home"
         screenOptions={({ route }) => ({
           tabBarIcon: ({ color }) => {
             let iconName: IconName;
