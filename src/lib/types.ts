@@ -1,16 +1,16 @@
-type CoordinatesTypeResponse = {
+export type CoordinatesTypeResponse = {
   lon: number;
   lat: number;
 };
 
-type WeatherResponse = {
+export type WeatherResponse = {
   id: number;
   main: string;
   description: string;
   icon: string;
 };
 
-type OpenWeatherMainValuesResponse = {
+export type OpenWeatherMainValuesResponse = {
   temp: number;
   feels_like: number;
   temp_min: number;
@@ -21,18 +21,18 @@ type OpenWeatherMainValuesResponse = {
   grnd_level: number;
 };
 
-type WindResponse = {
+export type WindResponse = {
   speed: number;
   deg: number;
   gust: number;
 };
 
-type RainResponse = {
+export type RainResponse = {
   "1h": number;
   "3h": number;
 };
 
-type SystemResponse = {
+export type SystemResponse = {
   type: number;
   id: number;
   country: string;
@@ -45,9 +45,32 @@ export type CoordsObject = {
   long: number;
 };
 
-export type OpenWeatherMapResponse = {
+export type CityResponse = {
+  id: number;
+  name: string;
+  coord: CoordsObject;
+  country: string;
+  population: number;
+  timezone: number;
+  sunrise: number;
+  sunset: number;
+};
+
+export type ForecastListResponse = {
+  dt: number;
+  main: OpenWeatherMainValuesResponse;
+  weather: Array<WeatherResponse>;
+  clouds: { all: number };
+  wind: WindResponse;
+  visibility: number;
+  pop: number;
+  sys: { pod: string };
+  dt_text: string;
+};
+
+export type OpenWeatherMapWeatherResponse = {
   coord: CoordinatesTypeResponse;
-  weather: [WeatherResponse];
+  weather: Array<WeatherResponse>;
   base: string;
   main: OpenWeatherMainValuesResponse;
   visibility: number;
@@ -62,4 +85,12 @@ export type OpenWeatherMapResponse = {
   id: number;
   name: string;
   cod: number;
+};
+
+export type OpenWeatherMapForecastResponse = {
+  cnt: number;
+  message: number;
+  cod: number;
+  list: Array<ForecastListResponse>;
+  city: CityResponse;
 };
