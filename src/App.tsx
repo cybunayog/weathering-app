@@ -1,38 +1,15 @@
-import { StatusBar } from "expo-status-bar";
-import React from "react";
-import { StyleSheet, Text, View } from "react-native";
+import React, { ReactElement } from "react";
+import { PaperProvider } from "react-native-paper";
+import { SafeAreaProvider } from "react-native-safe-area-context";
 
-import getCurrentWeather from "./lib/getCurrentWeather";
-import useLocation from "./lib/useLocation";
+import Navigator from "./routes/Navigator";
 
-export default function App() {
-  const { location } = useLocation();
-  const { currentWeatherData, loadingCurrentWeatherData, currentWeatherError } =
-    getCurrentWeather({
-      lat: location?.coords.latitude || 0,
-      long: location?.coords.longitude || 0,
-    });
-
+export default function App(): ReactElement {
   return (
-    <View style={styles.container}>
-      {loadingCurrentWeatherData ? <Text>Loading...</Text> : <></>}
-      {currentWeatherData ? <Text>{currentWeatherData.name}</Text> : <></>}
-      {currentWeatherError ? (
-        <Text>Error: {currentWeatherError.message}</Text>
-      ) : (
-        <></>
-      )}
-      <Text>Open up App.tsx to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <SafeAreaProvider>
+      <PaperProvider>
+        <Navigator />
+      </PaperProvider>
+    </SafeAreaProvider>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-});
