@@ -13,6 +13,7 @@ const theme = {
     ...DefaultTheme.colors,
     primary: "#fff",
     secondary: "#f0f0f0",
+    surfaceVariant: "#f0f0f0",
     onPrimaryContainer: "#000",
     secondaryContainer: "transparent",
   },

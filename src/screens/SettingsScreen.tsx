@@ -1,12 +1,21 @@
 import React, { ReactElement, useState } from "react";
 import { ScrollView, StyleSheet, View } from "react-native";
-import { Card, Title, Text, Button, Switch } from "react-native-paper";
+import {
+  Card,
+  Title,
+  Text,
+  Button,
+  Switch,
+  useTheme,
+} from "react-native-paper";
 import { SafeAreaView } from "react-native-safe-area-context";
 
 export function SettingsScreen(): ReactElement {
   const [isTimeFormatOn, setTimeFormatOn] = useState<boolean>(false);
   const [isLocationOn, setIsLocationOn] = useState<boolean>(false);
   const [isNotificationOn, setIsNotificationOn] = useState<boolean>(false);
+
+  const theme = useTheme();
 
   return (
     <SafeAreaView style={styles.container}>
@@ -60,6 +69,8 @@ export function SettingsScreen(): ReactElement {
                 </View>
                 <Switch
                   value={isNotificationOn}
+                  theme={theme}
+                  color="#1fe341"
                   onValueChange={() => setIsNotificationOn(!isNotificationOn)}
                 />
               </View>
@@ -76,6 +87,8 @@ export function SettingsScreen(): ReactElement {
                 </Text>
                 <Switch
                   value={isTimeFormatOn}
+                  theme={theme}
+                  color="#1fe341"
                   onValueChange={() => setTimeFormatOn(!isTimeFormatOn)}
                 />
               </View>
@@ -88,6 +101,8 @@ export function SettingsScreen(): ReactElement {
                 </View>
                 <Switch
                   value={isLocationOn}
+                  theme={theme}
+                  color="#1fe341"
                   onValueChange={() => setIsLocationOn(!isLocationOn)}
                 />
               </View>
