@@ -15,7 +15,9 @@ export function HomeScreen(): ReactElement {
     useState<OpenWeatherMapWeatherResponse | null>(null);
   const [forecastData, setForecastData] =
     useState<OpenWeatherMapForecastResponse | null>(null);
-  const { location } = useLocation();
+
+  // TODO: Fix Location hook to update immediately
+  const { location, error: locationError } = useLocation();
   const {
     currentWeatherData,
     loadingCurrentWeatherData,
@@ -55,7 +57,8 @@ export function HomeScreen(): ReactElement {
         <Text>Weather Error: {currentWeatherError.message}</Text>
       )}
       {forecastError && <Text>Forecast Error: {forecastError.message}</Text>}
-      {weatherData && !loadingCurrentWeatherData && (
+      {locationError && <Text>Location Error: {locationError}</Text>}
+      {weatherData && (
         <>
           <Text>Current Weather: {weatherData.weather[0].main}</Text>
           <Text>Description: {weatherData.weather[0].description}</Text>
@@ -70,7 +73,7 @@ export function HomeScreen(): ReactElement {
         </>
       )}
 
-      {forecastData && !loadingForecastData && (
+      {forecastData && (
         <>
           {/** TODO: Fix forecast list */}
           <Text>Tomorrow: {forecast.list[0].weather[0].main}</Text>

@@ -19,7 +19,7 @@ export default function useLocation() {
       const location = await Location.getCurrentPositionAsync();
       setLocation(location);
     })();
-  }, [location, error]);
+  }, []);
 
   return { location, error };
 }
