@@ -1,6 +1,6 @@
 import { Method } from "axios";
 
-import { CoordsObject } from "./types";
+import { CoordsObject, OpenWeatherMapForecastResponse } from "./types";
 import { useOpenWeatherApi } from "./useApi";
 
 export default function getForecast(
@@ -10,10 +10,13 @@ export default function getForecast(
   zipcode?: string,
 ) {
   const {
-    data: forecastData,
-    isLoading: loadingforecastData,
+    data,
+    isLoading: loadingForecastData,
     error: forecastError,
-  } = useOpenWeatherApi("forecast", coords, isImperial, method, zipcode);
+    callApi: callForecast,
+  } = useOpenWeatherApi("forecast", coords, isImperial, method, zipcode, 5);
 
-  return { forecastData, loadingforecastData, forecastError };
+  const forecastData = data as OpenWeatherMapForecastResponse;
+
+  return { callForecast, forecastData, loadingForecastData, forecastError };
 }
